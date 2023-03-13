@@ -1,0 +1,97 @@
+package SmallChangeSys.OOP;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class SmallChangeOOP {
+    boolean nit = true;
+    double shouyi = 0.0;
+    double yue = 0.0;
+    Date days = null;
+    double pay = 0.0;
+    String key = "";
+    String str2 = null;
+    SimpleDateFormat changedays = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    String num3 = "";
+    String str1 = "\t\t\t------零钱通明细------";
+    Scanner scanner;
+
+    public SmallChangeOOP() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void detail() {
+        System.out.println(this.str1);
+    }
+
+    public void income() {
+        System.out.println("请输入收益");
+        this.shouyi = this.scanner.nextDouble();
+        if (this.shouyi <= 0.0) {
+            System.out.println("你输入的收益有误请重新输入");
+        } else {
+            this.yue += this.shouyi;
+            this.days = new Date();
+            this.str1 = this.str1 + "\n收益入账 " + this.shouyi + "\t" + this.changedays.format(this.days) + "\t" + this.yue;
+        }
+    }
+
+    public void pays() {
+        System.out.println("请输入想要进行消费的场所");
+        this.str2 = this.scanner.next();
+        System.out.println("请输入想要进行多少金额的消费");
+        this.pay = this.scanner.nextDouble();
+        if (this.pay <= 0.0) {
+            System.out.println("你的消费金额有误请重新输入");
+        } else if (this.yue >= this.pay) {
+            this.yue -= this.pay;
+            this.days = new Date();
+            this.str1 = this.str1 + "\n消费场所：" + this.str2 + "\t-" + this.pay + "\t" + this.changedays.format(this.days) + "\t" + this.yue;
+        } else {
+            System.out.println("你的余额不足，当前余额为" + this.yue);
+        }
+    }
+
+    public void exit() {
+        do {
+            System.out.println("是否要退出，y/n");
+            this.num3 = this.scanner.next();
+        } while(!this.num3.equals("y") && !this.num3.equals("n"));
+
+        if (this.num3.equals("y")) {
+            this.nit = false;
+        }
+
+    }
+
+    public void showmenu() {
+        do {
+            System.out.println("----------零钱通项目----------");
+            System.out.println("\t\t1 零钱通明细");
+            System.out.println("\t\t2 收益入账");
+            System.out.println("\t\t3 消费");
+            System.out.println("\t\t4 退   出");
+            System.out.println("请选择1-4");
+            this.key = this.scanner.next();
+            switch (this.key) {
+                case "1":
+                    this.detail();
+                    break;
+                case "2":
+                    this.income();
+                    break;
+                case "3":
+                    this.pays();
+                    break;
+                case "4":
+                    this.exit();
+                    break;
+                default:
+                    System.out.println("选择有误，请重新输入");
+            }
+        } while(this.nit);
+
+        System.out.println("零钱通系统结束");
+    }
+}
