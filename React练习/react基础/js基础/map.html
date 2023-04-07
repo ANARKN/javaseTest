@@ -1,0 +1,24 @@
+<!-- map的概述
+map是js中的一种数据结构，允许存储键、值对，键和值可以是任意类型的数据，如果其中存在的键，值会被替换
+map()方法：返回一个新数组，不会修改原数组，且不会对空数组进行检测。
+map()方法示例： -->
+let num = [1,2,3,3,8];
+<!-- /*
+*可以传三个参数
+*item：当前元素值（必填）
+*index：当前元素的索引（可选）
+*arr：当前元素存在的数组对象（可选）
+*/ -->
+num.map((item,index,arr) =>{
+console.log(item); // 输出：1，2，3，3，8
+})
+<!-- Map中的一些常用方法
+1、has()：检测map对象中键是否存在，存在返回true，不存在返回false。
+2、set()：为map对象添加键值对，方法里里面跟两个参数（键，值），如果只传入一个参数，则值为undefine。
+3、get()：通过键来获取对应的值。 -->
+let myMap = new Map()
+myMap .set(1,1); // 添加一个键为1，值为1
+myMap .set('z','s'); // 添加一个键为'z',值为's'
+console.log(myMap ); //输出：{1 => 1,'z' => 's'}
+console.log(myMap .has('z')); //输出 true
+console.log(myMap .get('z')); //输出：s
